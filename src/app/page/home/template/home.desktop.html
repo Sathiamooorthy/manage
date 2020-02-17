@@ -1,0 +1,56 @@
+<div style="align-content: center">
+
+    <HeaderBarDesktop class="header"></HeaderBarDesktop>
+
+    <div class="leftColumn">
+        <button [ngClass]="(selectedOption == 'employee') ? 'selectedBG' : 'unSelectedBG'" class="leftColBtn"
+                (click)="employee()">Employee
+        </button>
+        <button [ngClass]="(selectedOption == 'department') ? 'selectedBG' : 'unSelectedBG'" class="leftColBtn"
+                (click)="department()">Department
+        </button>
+    </div>
+
+    <table class="tableView my-table" style="position: relative; margin-top: 10%">
+        <thead class="my-table headers">
+        <tr>
+            <th *ngFor="let column of titles">{{column.header}}</th>
+        </tr>
+        </thead>
+        <tbody class="my-table body">
+        <tr *ngFor="let row of sourceList; index as rowIndex">
+            <td *ngFor="let column of titles; index as i">
+                <div *ngIf="i!=0" style="cursor: pointer" (click)="onSelect(rowIndex)"
+                     [ngClass]="{last: i === (titles.length - 1) }">{{row[column.value]}}</div>
+                <div style="cursor: pointer;" (click)="onSelect(rowIndex)" *ngIf="i==0">
+                    <img *ngIf="row['selectedState']" class="imgVal" src="assets/images/select.png">
+                    <img *ngIf="!row['selectedState']" class="imgVal" src="assets/images/unselect.png">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <table *ngIf="selectedList.length > 0" class="tableView2 my-table" style="position: relative">
+        <thead class="my-table headers">
+        <tr>
+            <th *ngFor="let column of titles">{{column.header}}</th>
+        </tr>
+        </thead>
+        <tbody class="my-table body">
+        <tr *ngFor="let row of selectedList; index as rowIndex">
+
+            <td *ngFor="let column of titles; index as i">
+                <div *ngIf="i!=0" style="cursor: pointer" (click)="onSelectSelectedList(rowIndex)"
+                     [ngClass]="{last: i === (titles.length - 1) }">{{row[column.value]}}</div>
+                <div style="cursor: pointer;" (click)="onSelectSelectedList(rowIndex)" *ngIf="i==0">
+                    <img *ngIf="row['selectedState']" class="imgVal" src="assets/images/select.png">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+

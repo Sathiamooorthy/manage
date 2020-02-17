@@ -1,0 +1,21 @@
+<div style="align-content: center">
+
+  <HeaderBarDesktop></HeaderBarDesktop>
+
+  <div class="welcomeText">Welcome CM!</div>
+  <div class="mainDiv">
+
+
+    <InputValidatorDesktop style="top: 10%;" class="inputFld"
+                           [type]="'text'" [titleName]="'User Name'" (textChange)="userName($event)"></InputValidatorDesktop>
+    <InputValidatorDesktop style="top: 50%;" class="inputFld"
+                           [type]="'password'" [titleName]="'Password'" (textChange)="passWord($event)"></InputValidatorDesktop>
+
+  </div>
+
+  <div *ngIf="validUserName && validPassword" class="successLbl">Sccess!</div>
+
+  <button *ngIf="validUserName && validPassword" class="submitBtn" (click)="submit()">Submit</button>
+
+<!--  <button class="registerBtn" (click)="register()">Register</button>-->
+</div>
